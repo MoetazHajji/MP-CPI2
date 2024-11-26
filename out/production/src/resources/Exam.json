@@ -1,0 +1,16 @@
+[
+  {
+    "id": "E001",
+    "patientId": "P001",
+    "doctorId": "D001",
+    "type": "MRI",
+    "status": "Completed"
+  },
+  {
+    "id": "E002",
+    "patientId": "P002",
+    "doctorId": "D002",
+    "type": "CT Scan",
+    "status": "Scheduled"
+  }
+]

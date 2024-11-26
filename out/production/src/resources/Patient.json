@@ -1,0 +1,23 @@
+[
+  {
+    "id": "P001",
+    "name": "Alice Johnson",
+    "address": "123 Maple Street, Springfield",
+    "phone": "+1234567890",
+    "email": "alice.johnson@example.com",
+    "prescriptions": [
+      "Take X-ray",
+      "MRI Scan for lower back pain"
+    ]
+  },
+  {
+    "id": "P002",
+    "name": "Bob Smith",
+    "address": "456 Oak Avenue, Shelbyville",
+    "phone": "+0987654321",
+    "email": "bob.smith@example.com",
+    "prescriptions": [
+      "CT Scan for chest pain"
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "D001",
+    "name": "Dr. John Carter",
+    "specialization": "Radiologist",
+    "phone": "+1122334455"
+  },
+  {
+    "id": "D002",
+    "name": "Dr. Sarah Miller",
+    "specialization": "Ultrasound Specialist",
+    "phone": "+5566778899"
+  }
+]
