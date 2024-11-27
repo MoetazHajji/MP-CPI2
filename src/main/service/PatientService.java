@@ -34,32 +34,23 @@ public class PatientService{
     }
 
     public Patient getById(String id) {
-        try {
-            for (Patient patient : patients) {
-                 if (patient.getId().equals(id)) {
-                    return patient;
-                }
-            }
-        } catch (Exception e) {
-            System.out.printf("Error fetching patient: %s%n", e.getMessage());
-        }
-        return null;
+        return patients.stream()
+                .filter(patient -> patient.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
 
-    public void updatePatient(String id, String newName) {
-        try {
-            for (Patient patient : patients) {
-                if (patient.getId().equals(id)) {
-                    patient.setName(newName);
-                    jsonUtils.writeData(patients);
-                    System.out.println("Patient updated successfully.");
-                    return;
-                }
-            }
-            System.out.println("No Patient found with ID: " + id);
-        } catch (Exception e) {
-            System.out.printf("Error updating patient: %s%n", e.getMessage());
+    public void updatePatient(String id, Patient updatedPatient) {
+        Patient patient = getById(id);
+        if (patient != null) {
+            patient.setName(updatedPatient.getName());
+            patient.setAddress(updatedPatient.getAddress());
+            patient.setEmail(updatedPatient.getEmail());
+            patient.setPhone(updatedPatient.getPhone());
+            saveChanges("Patient updated successfully");
+        }else {
+            System.out.println("Patient not found");
         }
     }
 
@@ -68,7 +59,6 @@ public class PatientService{
             boolean removed = patients.removeIf(patient -> patient.getId().equals(id));
             if (removed) {
                 jsonUtils.writeData(patients);
-                System.out.println("Patient deleted successfully.");
             } else {
                 System.out.println("No Patient found with ID: " + id);
             }
@@ -76,4 +66,19 @@ public class PatientService{
             System.out.printf("Error deleting patient: %s%n", e.getMessage());
         }
     }
+
+
+    private void saveChanges(String successMessage) {
+        try {
+            jsonUtils.writeData(patients);
+            System.out.println(successMessage);
+        } catch (Exception e) {
+            logError("Error saving changes", e);
+        }
+    }
+
+    private void logError(String message, Exception e) {
+        System.err.printf("%s: %s%n", message, e.getMessage());
+    }
+
 }

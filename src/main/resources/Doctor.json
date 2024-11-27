@@ -1,14 +1,20 @@
 [
   {
     "id": "D001",
-    "name": "Dr. John Carter",
+    "name": "Hajji moetaz",
     "specialization": "Radiologist",
-    "phone": "+1122334455"
+    "phone": "+2169489019",
+    "email": "moetezh20@gmail.com",
+    "exams": null
   },
   {
     "id": "D002",
     "name": "Dr. Sarah Miller",
     "specialization": "Ultrasound Specialist",
-    "phone": "+5566778899"
+    "phone": "+5566778899",
+    "email": "example.test@gmail.com",
+    "exams": [
+      "Ultrasound"
+    ]
   }
 ]
