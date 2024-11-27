@@ -1,3 +1,4 @@
+import controller.PatientController;
 import entities.Patient;
 import service.PatientService;
 
@@ -9,23 +10,23 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int choice;
+        PatientController patientController = new PatientController();
+
+        int mainChoice;
         do {
             System.out.println("=== Radiology Center Management ===");
-            System.out.println("1. Add Patient");
-            System.out.println("2. View Patients");
+            System.out.println("1. Manage Patients");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
+            mainChoice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
-            switch (choice) {
-                case 1 -> addPatient(scanner);
-                case 2 -> viewPatients();
+            switch (mainChoice) {
+                case 1 -> patientController.managePatients(scanner);
                 case 0 -> System.out.println("Exiting...");
                 default -> System.out.println("Invalid choice. Try again.");
             }
-        } while (choice != 0);
+        } while (mainChoice != 0);
     }
 
 
