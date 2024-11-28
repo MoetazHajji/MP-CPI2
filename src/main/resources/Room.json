@@ -1,0 +1,1 @@
+[{"id":"R001","name":"Scanner Room 1","type":"Scanner","available":true},{"id":"R002","name":"MRI Room A","type":"IRM","available":false},{"id":"R004","name":"CT Scan Room B","type":"Scanner","available":true}]

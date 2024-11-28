@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "examId": "E123",
+    "content": "Le patient présente une fracture du fémur gauche. Aucune complication observée sur les radiographies.",
+    "doctorId": "D001",
+    "date": "2024-11-28"
+  },
+  {
+    "id": "2",
+    "examId": "E124",
+    "content": "Examen normal. Aucune anomalie détectée sur les radiographies thoraciques.",
+    "doctorId": "D002",
+    "date": "2024-11-28"
+  },
+  {
+    "id": "3",
+    "examId": "E125",
+    "content": "Les images montrent une légère scoliose dans la région lombaire. Suivi recommandé.",
+    "doctorId": "D003",
+    "date": "2024-11-29"
+  }
+]

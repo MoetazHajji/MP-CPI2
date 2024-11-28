@@ -65,7 +65,6 @@ public class DoctorService {
         }
     }
 
-    // Assign an exam to a doctor
     public void assignExamToDoctor(String id, String exam) {
         Doctor doctor = getDoctorById(id);
         if (doctor != null) {

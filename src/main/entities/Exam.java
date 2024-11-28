@@ -1,21 +1,30 @@
 package entities;
 
-public class Exam {
-    String id;
-    String patientId;
-    String doctorId;
-    String type;
-    String status;
-    String report;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public Exam(String id, String patientId, String doctorId, String type, String status, String report) {
+public class Exam {
+    private String id;
+    private String patientId;
+    private String doctorId;
+    private String technique;
+    private String status;
+    private String report;
+
+    public Exam(@JsonProperty("id") String id,
+                @JsonProperty("patientId") String patientId,
+                @JsonProperty("doctorId") String doctorId,
+                @JsonProperty("technique") String technique,
+                @JsonProperty("status") String status,
+                @JsonProperty("report") String report) {
         this.id = id;
         this.patientId = patientId;
         this.doctorId = doctorId;
-        this.type = type;
+        this.technique = technique;
         this.status = status;
         this.report = report;
     }
+
+    public Exam(){}
 
     public void setId(String id) {
         this.id = id;
@@ -29,16 +38,16 @@ public class Exam {
         this.doctorId = doctorId;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public void setStatus(String status) {
         this.status = status;
     }
 
     public void setReport(String report) {
         this.report = report;
+    }
+
+    public void setTechnique(String technique) {
+        this.technique = technique;
     }
 
     public String getId() {
@@ -53,10 +62,6 @@ public class Exam {
         return doctorId;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -64,5 +69,10 @@ public class Exam {
     public String getReport() {
         return report;
     }
+
+    public String getTechnique() {
+        return technique;
+    }
+
 }
 
