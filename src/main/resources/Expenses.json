@@ -1,0 +1,16 @@
+[
+  {
+    "id": "E001",
+    "description": "Achats de matériel",
+    "amount": 500.00,
+    "category": "Matériel",
+    "date": "2024-11-01"
+  },
+  {
+    "id": "E002",
+    "description": "Salaire médecin",
+    "amount": 2000.00,
+    "category": "Salaires",
+    "date": "2024-11-01"
+  }
+]

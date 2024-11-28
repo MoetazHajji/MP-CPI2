@@ -1,16 +1,1 @@
-[
-  {
-    "id": "E001",
-    "patientId": "P001",
-    "doctorId": "D001",
-    "type": "MRI",
-    "status": "Completed"
-  },
-  {
-    "id": "E002",
-    "patientId": "P002",
-    "doctorId": "D002",
-    "type": "CT Scan",
-    "status": "Scheduled"
-  }
-]
+[{"id":"E001","patientId":"P004","doctorId":"D004","technique":"IRM","status":"Completed","report":"Normal brain scan."},{"id":"E002","patientId":"P002","doctorId":"D002","technique":"scanner","status":"Scheduled","report":"Normal brain scan."},{"id":"E004","patientId":"P004","doctorId":"D004","technique":"Echographie","status":"Scheduled","report":"Normal"}]
