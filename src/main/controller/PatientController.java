@@ -3,6 +3,8 @@ package controller;
 import entities.Patient;
 import service.PatientService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PatientController {
@@ -37,16 +39,47 @@ public class PatientController {
     private void addPatient(Scanner scanner) {
         System.out.print("Enter Patient ID: ");
         String id = scanner.nextLine();
-        System.out.print("Enter Name: ");
+
+        // Check if the patient already exists
+        Patient existingPatient = patientService.getById(id);
+        if (existingPatient != null) {
+            System.out.println("A patient with this ID already exists: " + id);
+            return; // Exit if the patient already exists
+        }
+
+        // Collect patient details
+        System.out.print("Enter Patient Name: ");
         String name = scanner.nextLine();
-        System.out.print("Enter Address: ");
+
+        System.out.print("Enter Patient Address: ");
         String address = scanner.nextLine();
-        System.out.print("Enter Phone: ");
+
+        System.out.print("Enter Patient Phone: ");
         String phone = scanner.nextLine();
-        System.out.print("Enter Email: ");
+
+        System.out.print("Enter Patient Email: ");
         String email = scanner.nextLine();
-        Patient patient = new Patient(id, name, address, phone, email);
-        patientService.addPatient(patient);
+
+        System.out.print("Do you want to add exams for the doctor? (yes/no): ");
+        String addExams = scanner.nextLine();
+        List<String> prescriptions = new ArrayList<>();
+
+        if (addExams.equalsIgnoreCase("yes")) {
+            System.out.println("Enter Prescriptions (type 'done' to finish): ");
+            while (true) {
+                String prescription = scanner.nextLine();
+                if (prescription.equalsIgnoreCase("done")) break;
+                prescriptions.add(prescription);
+            }
+        }
+
+        // Create new patient
+        Patient newPatient = new Patient(id, name, address, phone, email,prescriptions);
+//        newPatient.setPrescriptions(prescriptions);
+
+        // Add the patient to the service
+        patientService.addPatient(newPatient);
+
         System.out.println("Patient added successfully.");
     }
 
@@ -60,8 +93,6 @@ public class PatientController {
     private void getPatientById(Scanner scanner) {
         System.out.print("Enter Patient ID to fetch: ");
         String id = scanner.nextLine();
-        scanner.nextLine();
-
         Patient patient = patientService.getById(id);
         if (patient != null) {
             System.out.println("Patient Details: " + patient);
@@ -73,19 +104,65 @@ public class PatientController {
     private void updatePatient(Scanner scanner) {
         System.out.print("Enter Patient ID to update: ");
         String id = scanner.nextLine();
-        scanner.nextLine();
 
-        System.out.print("Enter new Patient Name: ");
+        // Check if the patient exists
+        Patient existingPatient = patientService.getById(id);
+        if (existingPatient == null) {
+            System.out.println("No patient found with ID: " + id);
+            return;
+        }
+
+        // Prompt the user for new details and update them if provided
+        System.out.print("Enter new Patient Name (leave blank to keep unchanged): ");
         String newName = scanner.nextLine();
+        newName = newName.isEmpty() ? existingPatient.getName() : newName;
 
-        patientService.updatePatient(id, newName);
+        System.out.print("Enter new Address (leave blank to keep unchanged): ");
+        String newAddress = scanner.nextLine();
+        newAddress = newAddress.isEmpty() ? existingPatient.getAddress() : newAddress;
+
+        System.out.print("Enter new Phone  (leave blank to keep unchanged): ");
+        String newPhone = scanner.nextLine();
+        newPhone = newPhone.isEmpty() ? existingPatient.getPhone() : newPhone;
+
+        System.out.print("Enter new Email (leave blank to keep unchanged): ");
+        String newEmail = scanner.nextLine();
+        newEmail = newEmail.isEmpty() ? existingPatient.getEmail() : newEmail;
+
+        // Collect new prescriptions (or keep old)
+        System.out.print("Enter new Prescriptions (comma-separated, leave blank to keep unchanged): ");
+        String prescriptionsInput = scanner.nextLine();
+        List<String> newPrescriptions;
+
+        if (prescriptionsInput.isEmpty()) {
+            newPrescriptions = existingPatient.getPrescriptions(); // Keep the old prescriptions
+        } else {
+            newPrescriptions = new ArrayList<>();
+            for (String prescription : prescriptionsInput.split(",")) {
+                newPrescriptions.add(prescription.trim());
+            }
+        }
+
+        // Create the updated patient object
+        Patient updatedPatient = new Patient(id, newName, newAddress, newPhone, newEmail, newPrescriptions);
+
+        patientService.updatePatient(id, updatedPatient);
     }
+
+
 
     private void deletePatient(Scanner scanner) {
         System.out.print("Enter Patient ID to delete: ");
         String id = scanner.nextLine();
-        scanner.nextLine();
 
+        Patient patient = patientService.getById(id);
+        if (patient == null) {
+            System.out.println("No patient found with ID: " + id);
+            return;
+        }
+
+        // Proceed to delete the patient if found
         patientService.deletePatient(id);
+        System.out.println("Patient deleted successfully.");
     }
 }

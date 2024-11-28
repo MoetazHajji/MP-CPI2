@@ -20,12 +20,14 @@ public class Patient {
             @JsonProperty("name") String name,
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
-            @JsonProperty("address") String address) {
+            @JsonProperty("address") String address,
+            @JsonProperty("prescriptions") List<String> prescriptions) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.email = email;
+        this.prescriptions = prescriptions;
     }
 
 
