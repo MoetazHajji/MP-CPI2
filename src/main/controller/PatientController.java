@@ -74,7 +74,8 @@ public class PatientController {
         }
 
         // Create new patient
-        Patient newPatient = new Patient(id, name, address, phone, email, prescriptions);
+        Patient newPatient = new Patient(id, name, address, phone, email,prescriptions);
+//        newPatient.setPrescriptions(prescriptions);
 
         // Add the patient to the service
         patientService.addPatient(newPatient);
@@ -131,18 +132,23 @@ public class PatientController {
         // Collect new prescriptions (or keep old)
         System.out.print("Enter new Prescriptions (comma-separated, leave blank to keep unchanged): ");
         String prescriptionsInput = scanner.nextLine();
-        List<String> newPrescriptions = prescriptionsInput.isEmpty() ?
-                existingPatient.getPrescriptions() :
-                List.of(prescriptionsInput.split(","));
+        List<String> newPrescriptions;
 
-
+        if (prescriptionsInput.isEmpty()) {
+            newPrescriptions = existingPatient.getPrescriptions(); // Keep the old prescriptions
+        } else {
+            newPrescriptions = new ArrayList<>();
+            for (String prescription : prescriptionsInput.split(",")) {
+                newPrescriptions.add(prescription.trim());
+            }
+        }
 
         // Create the updated patient object
-        Patient updatedPatient = new Patient(id, newName, newAddress, newPhone, newEmail,newPrescriptions);
-        patientService.updatePatient(id, updatedPatient);
+        Patient updatedPatient = new Patient(id, newName, newAddress, newPhone, newEmail, newPrescriptions);
 
-        System.out.println("Patient updated successfully.");
+        patientService.updatePatient(id, updatedPatient);
     }
+
 
 
     private void deletePatient(Scanner scanner) {

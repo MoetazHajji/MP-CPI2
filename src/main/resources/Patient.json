@@ -18,9 +18,23 @@
   {
     "id": "P003",
     "name": "MOETAZ HAJJI",
-    "phone": "MOETEZ@GMAIL.COM",
-    "email": "ARIANA",
-    "address": "+21694089019",
-    "prescriptions": null
+    "phone": "+21694089019",
+    "email": "MOETEZ@GMAIL.COM",
+    "address": "ARIANA",
+    "prescriptions": [
+      "Paracetamol",
+      "Aspirin"
+    ]
+  },
+  {
+    "id": "P004",
+    "name": "HOUSSEM TOUMI",
+    "phone": "HOUSSEM.TOUMI@GMAIL.COM",
+    "email": "GHAZELA",
+    "address": "+21654789632",
+    "prescriptions": [
+      "Antibiotics",
+      "Paracetamol"
+    ]
   }
 ]

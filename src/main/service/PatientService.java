@@ -48,6 +48,7 @@ public class PatientService{
             patient.setAddress(updatedPatient.getAddress());
             patient.setEmail(updatedPatient.getEmail());
             patient.setPhone(updatedPatient.getPhone());
+            patient.setPrescriptions(updatedPatient.getPrescriptions());
             saveChanges("Patient updated successfully");
         }else {
             System.out.println("Patient not found");

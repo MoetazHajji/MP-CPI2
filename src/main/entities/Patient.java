@@ -27,6 +27,7 @@ public class Patient {
         this.address = address;
         this.phone = phone;
         this.email = email;
+        this.prescriptions = prescriptions;
     }
 
 
